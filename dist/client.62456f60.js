@@ -123,14 +123,35 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = func;
+exports.default = bodyStuff;
 exports.eyes = eyes;
 
-function func() {
+var _client = require("./client.js");
+
+function bodyStuff() {
   var body = document.querySelector('body');
-  body.addEventListener('dblclick', function () {
-    body.classList.toggle('body-styles');
+  body.addEventListener('click', function () {
+    var bgc = bodyColor();
+    body.style.backgroundColor = "".concat(bgc[0]);
+    body.style.color = "".concat(bgc[1]);
   });
+  body.addEventListener('dblclick', function (e) {
+    addBall();
+    e.stopPropogation();
+  });
+}
+
+function bodyColor() {
+  var colors = [['#8CE6E6', '#000000'], ['#FFA6CE', '#000000'], ['#AAFFA6', '#000000'], ['#260E66', '#ffffff'], ['#FCF7B1', '#000000'], ['#910011', '#ffffff'], ['#911B00', '#ffffff']];
+  return colors[Math.floor(Math.random() * colors.length)];
+}
+
+function addBall() {
+  var ballCont = document.querySelector('.ball-cont');
+  var ball = "<div class=\"box\"></div>";
+  ballCont.insertAdjacentHTML('beforeend', ball);
+  eyes();
+  (0, _client.colorBoxes)();
 }
 
 function eyes() {
@@ -140,8 +161,29 @@ function eyes() {
     box.insertAdjacentHTML('afterbegin', eyesHtml);
   });
 }
-},{}],"client.js":[function(require,module,exports) {
+
+var instructionsBtn = document.getElementById('btn-instructions');
+var instrText = document.querySelector('.instructions-text');
+var closeBtn = document.getElementById('btn-close');
+instructionsBtn.addEventListener('click', function (e) {
+  e.stopPropagation();
+  instrText.className = 'show';
+  this.className = 'hide';
+  closeBtn.className = 'show';
+});
+closeBtn.addEventListener('click', function (e) {
+  e.stopPropagation();
+  instrText.className = 'hide';
+  this.className = 'hide';
+  instructionsBtn.className = 'show';
+});
+},{"./client.js":"client.js"}],"client.js":[function(require,module,exports) {
 "use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.colorBoxes = colorBoxes;
 
 var _func = _interopRequireWildcard(require("./func.js"));
 
@@ -151,18 +193,23 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 (0, _func.default)();
 (0, _func.eyes)();
-var boxes = document.querySelectorAll('.box');
-boxes.forEach(function (box) {
-  box.addEventListener('click', function (e) {
-    var randomColour = Math.round(Math.random() * 0xffffff);
-    box.style.backgroundColor = "#".concat(randomColour.toString(16).padStart(6, '0'));
+
+function colorBoxes() {
+  var boxes = document.querySelectorAll('.box');
+  boxes.forEach(function (box) {
+    box.addEventListener('click', function (e) {
+      e.stopPropagation();
+      var randomColour = Math.round(Math.random() * 0xffffff);
+      box.style.backgroundColor = "#".concat(randomColour.toString(16).padStart(6, '0'));
+    });
   });
-});
-boxes.forEach(function (box) {
-  box.addEventListener('dblclick', function (e) {
-    e.stopPropagation();
+  boxes.forEach(function (box) {
+    box.addEventListener('dblclick', function (e) {
+      e.stopPropagation();
+      e.target.matches('.eyes, .box') ? box.remove() : null;
+    });
   });
-});
+}
 },{"./func.js":"func.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -191,7 +238,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55909" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51939" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

@@ -2,7 +2,7 @@
   "name": "parcel",
   "version": "1.0.0",
   "description": "",
-  "main": "public/index.html",
+  "main": "dist/index.html",
   "scripts": {
     "dev": "parcel public/index.html",
     "start": "node server.js",

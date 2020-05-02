@@ -9,10 +9,12 @@
 body {
   font-family: 'Montserrat', sans-serif;
   font-weight: bold;
+  transition: background-color 0.3s ease-in;
 }
 
 h1 {
-  margin-bottom: 20px;
+  text-align: center;
+  margin: 20px;
   letter-spacing: 0.3rem;
 }
 
@@ -25,32 +27,35 @@ h1 {
   border-radius: 50%;
   background-color: yellow;
   margin-bottom: 30px;
+  transition: background-color 0.3s ease-in;
   animation: bounce 1.5s ease-in-out 0.5s infinite;
 }
 
 @keyframes bounce {
   from {
-    transform: translateY(0%);
+    transform: translateY(0);
   }
 
   to {
-    transform: translateY(100%);
+    transform: translateY(200px);
   }
 }
 
 .container {
-  position: relative;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   flex-direction: column;
-  min-height: 60vh;
-  max-width: 800px;
-  margin: 30px auto;
+  max-width: 1100px;
+  margin: 10px auto;
 }
 
-.colors {
-  background-color: red !important;
+.ball-cont {
+  height: 70vh;
+  width: 80vw;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
 }
 
 .eyes-cont {
@@ -75,9 +80,34 @@ h1 {
 }
 
 .instructions {
-  position: fixed;
-  bottom: 30px;
-  right: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   text-align: center;
   font-size: 20px;
+}
+
+button {
+  background-color: blue;
+  color: #fff;
+  padding: 0.5em 0.7em;
+  border: none;
+  border-radius: 3px;
+}
+
+.instructions-text {
+  display: none;
+  margin-bottom: 30px;
+}
+
+.show {
+  display: flex !important;
+}
+
+#btn-close {
+  display: none;
+}
+
+.hide {
+  display: none;
 }
