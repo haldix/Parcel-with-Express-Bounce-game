@@ -1,0 +1,39 @@
+.box {
+  position: relative;
+  height: 100px;
+  width: 100px;
+  border: 1px solid #000;
+  border-radius: 50%;
+  background-color: yellow;
+  margin-bottom: 30px;
+}
+
+#container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.colors {
+  background-color: red !important;
+}
+
+.eyes-cont {
+  display: flex;
+  justify-content: space-between;
+  width: 50px;
+  position: absolute;
+  top: 30px;
+  left: 24px;
+}
+
+.eye {
+  height: 22px;
+  width: 15px;
+  border-radius: 50%;
+  background-color: #000;
+}
+
+
+/*# sourceMappingURL=/style.e308ff8e.css.map */
