@@ -127,12 +127,14 @@ exports.default = func;
 exports.eyes = eyes;
 
 function func() {
-  console.log('Hi Funcs!');
+  var body = document.querySelector('body');
+  body.addEventListener('dblclick', function () {
+    body.classList.toggle('body-styles');
+  });
 }
 
 function eyes() {
   var boxes = document.querySelectorAll('.box');
-  console.log('boxes', boxes);
   var eyesHtml = "<div class=\"eyes-cont\"><div class=\"eye\"></div><div class=\"eye\"></div></div>";
   boxes.forEach(function (box) {
     box.insertAdjacentHTML('afterbegin', eyesHtml);
@@ -149,10 +151,17 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 (0, _func.default)();
 (0, _func.eyes)();
-var box = document.querySelector('.box');
-var btn = document.getElementById('btn');
-btn.addEventListener('click', function () {
-  box.classList.toggle('colors');
+var boxes = document.querySelectorAll('.box');
+boxes.forEach(function (box) {
+  box.addEventListener('click', function (e) {
+    var randomColour = Math.round(Math.random() * 0xffffff);
+    box.style.backgroundColor = "#".concat(randomColour.toString(16).padStart(6, '0'));
+  });
+});
+boxes.forEach(function (box) {
+  box.addEventListener('dblclick', function (e) {
+    e.stopPropagation();
+  });
 });
 },{"./func.js":"func.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
@@ -182,7 +191,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53204" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55909" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
